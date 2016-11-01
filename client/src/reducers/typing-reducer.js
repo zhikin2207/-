@@ -4,7 +4,7 @@ import initialState from './initial-state';
 export default function(state = initialState.typing, action) {
     switch(action.type) {
         case types.SET_INITIAL_TEXT:
-            return setInitialText(initialState.typing, action.text);
+            return setInitialText(initialState.typing, action.text, action.name);
         case types.SET_CORRECT_INPUT:
         case types.SET_ERROR_INPUT:
         case types.SET_INPUT:
@@ -45,9 +45,10 @@ const setInput = (state, text) => {
     };
 };
 
-const setInitialText = (state, text) => {
+const setInitialText = (state, text, name) => {
     return {
         ...state,
-        initialText: text
+        initialText: text,
+        name: name
     };
 };

@@ -1,5 +1,8 @@
 import * as types from './action-types';
-import words from '../store/words';
+import {get} from 'jquery';
+import {url,statusCode} from '../config';
+import * as typingSelectors from '../utils/selectors/typing-selectors';
+import textService from '../api/text-service';
 
 export const setInput = (text) => ({ 
     type: types.SET_INPUT,
@@ -31,22 +34,24 @@ export const resetTyping = () => ({
     type: types.RESET_TYPING 
 });
 
-const loadTextSuccess = (text) => ({
+export const loadTextSuccess = (text, name) => ({
     type: types.SET_INITIAL_TEXT,
-    text 
+    letters: typingSelectors.selectLettersStats(text),
+    text,
+    name
 });
 
-export const loadText = () => {
+export const loadTopWords = () => {
     return dispatch => {
-        const text = words[randomInteger(0, words.length -1)];
-
         dispatch(resetTyping());
-        dispatch(loadTextSuccess(text));
+
+        textService
+            .topWords()
+            .then(function(response) {
+                dispatch(loadTextSuccess(response.data.value, response.data.name));
+            })
+            .catch(function(error) {
+                // TODO: solve this issue
+            });
     };
 };
-
-function randomInteger(min, max) {
-    let rand = min + Math.random() * (max - min);
-    rand = Math.round(rand);
-    return rand;
-}

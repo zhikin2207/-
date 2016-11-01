@@ -22,7 +22,7 @@ class GamePage extends React.Component {
 
     componentWillMount() {
         this.props.statistics.reset();
-        this.props.typing.loadText();
+        this.props.typing.loadTopWords();
     }
 
     componentWillUnmount() {

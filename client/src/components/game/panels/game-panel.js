@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import SmartTypingPanel from './smart-typing-panel';
 import * as typingUtils from '../../../utils/typing-utils';
-import * as typingSelectors from '../../../utils/selectors/typing-selectors';
 import * as typingActions from '../../../actions/typing-actions';
 import * as statisticsActions from '../../../actions/statistics-actions';
 
@@ -12,13 +11,6 @@ class GamePanel extends React.Component {
         super(props, context);
 
         this.onTextInput = this.onTextInput.bind(this);
-    }
-
-    componentWillMount() {
-        const initialText = this.props.initialText;
-        const letters = typingSelectors.selectLettersStats(initialText);
-
-        this.props.statistics.setLetters(letters);
     }
 
     onTextInput(event) {

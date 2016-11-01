@@ -14,3 +14,9 @@ export const UPDATE_LETTER = 'UPDATE_LETTER';
 export const ADD_LETTER_ERROR = 'ADD_LETTER_ERROR';
 export const RESET_STATISTICS = 'RESET_STATISTICS';
 
+// auth action types
+export const SIGNIN_USER = 'SIGNIN_USER';
+export const SET_AUTH_ERROR = 'SET_AUTH_ERROR';
+export const CLEAR_AUTH_ERROR = 'CLEAR_AUTH_ERROR';
+export const SIGNOUT_USER = 'SIGNOUT_USER';
+export const SET_USER_INFO = 'SET_USER_INFO';

@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0-*",
+
+    "dependencies": {
+        "AutoMapper": "5.1.1",
+        "DevRacing.Common": "1.0.0-*",
+        "DevRacing.DAL": "1.0.0-*",
+        "Microsoft.Extensions.Configuration": "1.0.0",
+        "Microsoft.Extensions.DependencyInjection": "1.0.0",
+        "NETStandard.Library": "1.6.0"
+    },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}

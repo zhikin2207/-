@@ -3,7 +3,7 @@ import initialState from './initial-state';
 
 export default function(state = initialState.statistics, action) {
     switch(action.type) {
-        case types.SET_LETTERS:
+        case types.SET_INITIAL_TEXT:
             return setLetters(state, action.letters);
         case types.SET_ELAPSED_TICKS:
             return setElapsedTicks(state, action.elapsedTicks);

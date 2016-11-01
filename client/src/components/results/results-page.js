@@ -2,11 +2,16 @@ import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import statisticsService from '../../api/statistics-service';
 import * as typingActions from '../../actions/typing-actions';
 import * as statisticsActions from '../../actions/statistics-actions';
 import * as statisticsSelectors from '../../utils/selectors/statistics-selectors';
 
 class ResultsPage extends React.Component {
+    componentWillMount() {
+        statisticsService.set(this.props.letters);
+    }
+
     render() {
         const totalSeconds = this.props.elapsedTicks / 1000;
 
@@ -57,7 +62,8 @@ class ResultsPage extends React.Component {
 const mapStateToProps = (state, ownProps) => ({
     fixes: state.typing.fixes,
     elapsedTicks: state.statistics.elapsedTicks,
-    letters: state.statistics.letters
+    letters: state.statistics.letters,
+    textName: state.typing.name
 });
 
 export default connect(mapStateToProps)(ResultsPage);

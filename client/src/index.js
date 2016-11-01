@@ -9,9 +9,19 @@ import routes from './routes';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import './css/styles.css';
-import { loadText } from './actions/typing-actions';
+import * as authActions from './actions/auth-actions';
 
+const token = localStorage.getItem('token');
+const user = JSON.parse(localStorage.getItem('user'));
 const store = configureStore();
+
+if (token) {
+    store.dispatch(authActions.signinUserSuccess());
+}
+
+if (user) {
+    store.dispatch(authActions.setUserInfo(user));
+}
 
 render (
     <Provider store={store}>

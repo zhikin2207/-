@@ -17,10 +17,7 @@ const SmartTypingPanel = ({
 
         const inputText = event.target.value;
         const inputStarted = onInputStarted && inputText.length === 1;
-        const inputCompleted = 
-            onInputCompleted && 
-            inputText.length === initialText.length &&
-            errorIndex === -1;
+        const inputCompleted = onInputCompleted && inputText.length === initialText.length && errorIndex === -1;
 
         if (inputStarted) {
             onInputStarted();
