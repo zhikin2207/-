@@ -6,7 +6,7 @@ const TextDisplayBox = ({initialText, cursorIndex, fixes, errorIndex}) => {
     const renderLetter = (letter, index) => {
         let elementClass = getLetterClass(index);
         return <span key={index} className={`letter ${elementClass}`}>{letter}</span>;
-    }
+    };
 
     return (
         <div className="typing-panel">

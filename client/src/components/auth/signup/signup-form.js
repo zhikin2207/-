@@ -2,22 +2,11 @@ import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import validate from './signup-form-validation';
 import TextBox from '../../common/form/text-box';
+import ErrorMessage from '../../common/form/error-message';
 
-const renderErrorMessage = (errorMessage) => {
-    if (errorMessage) {
-        return (
-            <div className="alert alert-danger">
-                {errorMessage}
-            </div>
-        );
-    }
-}
-
-const SignupForm = (props) => {
-    const {handleSubmit} = props;
-
+const SignupForm = ({handleSubmit, onSubmit, errorMessage}) => {
     return (
-        <form className="col-md-4 col-md-offset-4" onSubmit={handleSubmit(props.onSubmit)}>
+        <form className="col-md-4 col-md-offset-4" onSubmit={handleSubmit(onSubmit)}>
             <h2>Sign Up</h2>
 
             <div className="form-group">
@@ -40,14 +29,11 @@ const SignupForm = (props) => {
                 <Field name="email" type="email" component={TextBox} label="Email" />
             </div>
 
-            {renderErrorMessage(props.errorMessage)}
+            {errorMessage && <ErrorMessage>errorMessage</ErrorMessage>}
 
             <button type="submit" className="btn btn-default pull-right">Sign Up</button>
         </form>
     );
 };
 
-export default reduxForm({
-    form: 'signup',
-    validate
-})(SignupForm);
+export default reduxForm({ form: 'signup', validate })(SignupForm);

@@ -1,4 +1,4 @@
-import {url} from '../config';
+import {urls} from '../config';
 import apiService from './api-service';
 import defaultConfig from './config';
 
@@ -6,7 +6,7 @@ class StatisticsService {
     set(letters) {
         return apiService.ajaxCall({
             ...defaultConfig,
-            url: url.base + '/statistics',
+            url: urls.statistics,
             method: 'POST',
             data: { letters }
         });

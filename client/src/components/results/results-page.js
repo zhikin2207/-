@@ -1,10 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import statisticsService from '../../api/statistics-service';
-import * as typingActions from '../../actions/typing-actions';
-import * as statisticsActions from '../../actions/statistics-actions';
 import * as statisticsSelectors from '../../utils/selectors/statistics-selectors';
 
 class ResultsPage extends React.Component {

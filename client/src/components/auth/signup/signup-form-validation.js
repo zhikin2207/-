@@ -9,6 +9,6 @@ const validate = (values) => {
     if (values.password !== values.confirmPassword) errors.confirmPassword = 'Your passwords must mutch';
 
     return errors;
-}
+};
 
 export default validate;

@@ -9,7 +9,7 @@ export default function(ComposedComponent) {
             }
         }
 
-        compoentWillUpdate(nextProps) {
+        componentWillUpdate(nextProps) {
             if (!nextProps.authenticated) {
                 this.context.router.push('/signin');
             }

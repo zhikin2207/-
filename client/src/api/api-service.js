@@ -1,5 +1,5 @@
 import {ajax} from 'jquery';
-import {statusCode,constant} from '../config';
+import {statusCodes,constants} from '../config';
 
 class ApiService {
     ajaxCall(config) {
@@ -11,7 +11,7 @@ class ApiService {
             };
 
             return ajax(config).then(function(response) {
-                if (response.status === statusCode.ok) {
+                if (response.status === statusCodes.ok) {
                     resolve(response);
                 } else {
                     reject(response);
@@ -23,7 +23,7 @@ class ApiService {
     }
 
     get token() {
-        return localStorage.getItem(constant.tokenName);
+        return localStorage.getItem(constants.tokenKey);
     }
 }
 

@@ -14,6 +14,7 @@ export default {
     auth: {
         user: {},
         authenticated: false,
-        payload: ''
+        signinError: '',
+        signupError: ''
     }
 };

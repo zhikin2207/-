@@ -1,17 +1,26 @@
 const baseUrl = 'http://localhost:58681/api';
 
-export const url = {
+export const urls = {
     base: baseUrl,
+    defaultRedirect: '/',
     token: `${baseUrl}/token`,
     account: `${baseUrl}/account`,
-    text: `${baseUrl}/text`
+    statistics: `${baseUrl}/statistics`,
+    text: {
+        top15words: `${baseUrl}/text/top15words`
+    }
 };
 
-export const statusCode = {
+export const statusCodes = {
     ok: 200,
     error: 500
 };
 
-export const constant = {
-    tokenName: 'token'
+export const constants = {
+    tokenKey: 'token',
+    userKey: 'user'
+};
+
+export const errorMessages = {
+
 };

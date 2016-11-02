@@ -1,4 +1,4 @@
-import {url} from '../config';
+import {urls} from '../config';
 import apiService from './api-service';
 import defaultConfig from './config';
 
@@ -6,7 +6,7 @@ class TextService {
     topWords() {
         return apiService.ajaxCall({
             ...defaultConfig,
-            url: url.base + '/text/top15words',
+            url: urls.text.top15words,
             method: 'GET'
         });
     }

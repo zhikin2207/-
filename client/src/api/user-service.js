@@ -1,4 +1,4 @@
-import {url} from '../config';
+import {urls} from '../config';
 import apiService from './api-service';
 import defaultConfig from './config';
 
@@ -6,7 +6,7 @@ class UserService {
     signin(user) {
         return apiService.ajaxCall({
             ...defaultConfig,
-            url: url.token,
+            url: urls.token,
             data: user
         });
     }
@@ -14,7 +14,7 @@ class UserService {
     signup(user) {
         return apiService.ajaxCall({
             ...defaultConfig,
-            url: url.account,
+            url: urls.account,
             data: user
         });
     }
@@ -22,7 +22,7 @@ class UserService {
     getProfile() {
         return apiService.ajaxCall({
             ...defaultConfig,
-            url: url.base + '/account',
+            url: urls.account,
             method: 'GET'
         });
     }

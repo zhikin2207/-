@@ -1,6 +1,4 @@
 import * as types from './action-types';
-import {get} from 'jquery';
-import {url,statusCode} from '../config';
 import * as typingSelectors from '../utils/selectors/typing-selectors';
 import textService from '../api/text-service';
 

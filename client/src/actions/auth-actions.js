@@ -1,7 +1,6 @@
-import {post} from 'jquery';
 import {browserHistory} from 'react-router';
 import * as types from './action-types';
-import {url,statusCode,constant} from '../config';
+import {urls, constants} from '../config';
 import userService from '../api/user-service';
 
 export const signinUserSuccess = () => ({ 
@@ -12,8 +11,13 @@ export const signoutUserSuccess = () => ({
     type: types.SIGNOUT_USER 
 });
 
-export const setAuthError = (payload) => ({
-    type: types.SET_AUTH_ERROR,
+export const setSigninError = (payload) => ({
+    type: types.SET_SIGNIN_ERROR,
+    payload
+});
+
+export const setSignupError = (payload) => ({
+    type: types.SET_SIGNUP_ERROR,
     payload
 });
 
@@ -24,36 +28,34 @@ export const clearAuthError = () => ({
 export const setUserInfo = (user) => ({
     type: types.SET_USER_INFO,
     user
-})
+});
 
 export const signinUser = (user) => {
     return dispatch => {
         userService
             .signin(user)
             .then(function(response) {
-                localStorage.setItem(constant.tokenName, response.data);
+                localStorage.setItem(constants.tokenKey, response.data);
                 dispatch(signinUserSuccess());
 
                 return userService.getProfile();
             })
             .then(function(response) {
-                localStorage.setItem('user', JSON.stringify(response.data));
+                localStorage.setItem(constants.userKey, JSON.stringify(response.data));
                 dispatch(setUserInfo(response.data));
-            })
-            .then(function() {
-                browserHistory.push('/');
+                browserHistory.push(urls.defaultRedirect);
             })
             .catch(function(error) {
                 const message = error.message || 'Ops! Seems like something went wrong.';
-                dispatch(setAuthError(message));
+                dispatch(setSigninError(message));
             });
     };
 };
 
 export const signoutUser = () => {
     return dispatch => {
-        localStorage.removeItem(constant.tokenName);
-        localStorage.removeItem('user');
+        localStorage.removeItem(constants.tokenKey);
+        localStorage.removeItem(constants.userKey);
         dispatch(signoutUserSuccess());
     };
 };
@@ -62,23 +64,20 @@ export const signupUser = (user) => {
     return dispatch => {
         userService.signup(user)
             .then(function(response) {
-                localStorage.setItem(constant.tokenName, response.data);
+                localStorage.setItem(constants.tokenKey, response.data);
                 dispatch(signinUserSuccess());
 
                 return userService.getProfile();
             })
             .then(function(response) {
-                localStorage.setItem('user', JSON.stringify(response.data));
+                localStorage.setItem(constants.userKey, JSON.stringify(response.data));
                 dispatch(setUserInfo(response.data));
-            })
-            .then(function() {
-                browserHistory.push('/');
+                browserHistory.push(urls.defaultRedirect);
             })
             .catch(function(error) {
                 const message = error.message || 'Ops! Seems like something went wrong.';
-                dispatch(setAuthError(message));
+                dispatch(setSignupError(message));
             });
     };
-}
+};
 
-// TODO: make different auth errors
